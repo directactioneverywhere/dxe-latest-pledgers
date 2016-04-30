@@ -49,3 +49,6 @@ interfacing with spreadsheets is [gspread](https://github.com/burnash/gspread).
 The documentation is [here on readthedocs](http://gspread.readthedocs.org/en/latest/index.html).
 One important detail about the API is that all cells are returned as strings
 despite the underlying spreadsheet cell format.
+
+# License
+Copyright © 2016 DxE Tech Working Group and licensed under the GNU General Public License v3.0. See the LICENSE file for the complete license.
