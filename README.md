@@ -12,7 +12,7 @@ GET http://liberationpledge-api.dxetech.org/pledgers?limit=10
 
 See the Facebook Data [example_request.html](example_request.html) for an example of how to make a request to this endpoint from JavaScript without jQuery.
 
-See [latest_pledgers.py](latest_pledgers.py) for the full functionality.
+See [server.py](liberationpledge_api/server.py) for the full functionality.
 
 Local Development
 -----------------
