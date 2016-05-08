@@ -7,7 +7,7 @@ Usage
 Example request:
 
 ```
-GET http://dxetech.org/pledge/latest_pledgers/10
+GET http://liberationpledge-api.dxetech.org/pledgers?limit=10
 ```
 
 See the Facebook Data [example_request.html](example_request.html) for an example of how to make a request to this endpoint from JavaScript without jQuery.
@@ -53,4 +53,4 @@ The documentation is [here on readthedocs](http://gspread.readthedocs.org/en/lat
 
 License
 =======
-dxe-latest-pledgers is licensed under GNU GPL version 3.0. For the full license see the LICENSE file.
+liberationpledge-api is licensed under GNU GPL version 3.0. For the full license see the LICENSE file.

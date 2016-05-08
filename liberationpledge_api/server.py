@@ -66,10 +66,11 @@ def shorten_field(field):
     return field
 
 
-@app.route('/pledge/latest_pledgers/<int:num>')
+@app.route('/pledgers')
 @cached()
-def latest_pledgers(num):
+def latest_pledgers():
     """Returns the last `num` pledgers."""
+    num = request.args.get('limit')
     if num < 1:
         return jsonify({"error": "number of entries requested must be a positive integer"})
     elif num > NUM_PLEDGERS_LIMIT:

@@ -1,1 +1,1 @@
-web: gunicorn dxe_latest_pledgers.server:app
+web: gunicorn liberationpledge.server:app
