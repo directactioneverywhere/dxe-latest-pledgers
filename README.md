@@ -1,5 +1,5 @@
-Latest Pledgers
-===============
+The Liberation Pledge API
+=========================
 This endpoint basically just uses Google's API to query the spreadsheet behind [The Liberation Pledge](http://liberationpledge.com/) form and returns the last N of the results, filtering out the private/unnecessary fields.
 
 Usage
