@@ -22,7 +22,7 @@ Deployment
 ----------
 This app is deployed with Dokku. [Learn about](https://github.com/directactioneverywhere/dxe-learn2dokku) how DxE Tech deploys with Dokku. The Dokku git remote is:
 
-    dokku@dxetech.org:latest-pledgers
+    dokku@dxetech.org:liberationpledge-api
 
 Why this is a thing
 -------------------
