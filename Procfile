@@ -1,1 +1,1 @@
-web: gunicorn liberationpledge.server:app
+web: gunicorn liberationpledge_api.server:app
