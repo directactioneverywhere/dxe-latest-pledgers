@@ -1,6 +1,8 @@
 The Liberation Pledge API
 =========================
-This endpoint basically just uses Google's API to query the spreadsheet behind [The Liberation Pledge](http://liberationpledge.com/) form and returns the last N of the results, filtering out the private/unnecessary fields.
+This is an API back-end used by [The Liberation Pledge](http://www.liberationpledge.com/) website. Presently is has just one endpoint: `/pledgers`, which is used to return information about the most recent pledgers.
+
+The Liberation Pledge website is hosted on SquareSpace.
 
 Usage
 -----
@@ -10,7 +12,7 @@ Example request:
 GET http://liberationpledge-api.dxetech.org/pledgers?limit=10
 ```
 
-See the Facebook Data [example_request.html](example_request.html) for an example of how to make a request to this endpoint from JavaScript without jQuery.
+See the Facebook Data [example_request.html](https://github.com/directactioneverywhere/dxe-facebook-data-api/blob/master/dxe_facebook_data_api/templates/example_request.html) for an example of how to make a request to this endpoint from JavaScript without jQuery.
 
 See [server.py](liberationpledge_api/server.py) for the full functionality.
 
@@ -24,10 +26,13 @@ This app is deployed with Dokku. [Learn about](https://github.com/directactionev
 
     dokku@dxetech.org:liberationpledge-api
 
-Why this is a thing
--------------------
-We can't put the credentials to access the spreadsheet in JavaScript because then anyone can access it, so we have to proxy the request through our server. NBD.
+Configuration
+-------------
+You will need the following environment variables, both locally and in production:
 
+* `GOOGLE_API_CLIENT_EMAIL`
+* `GOOGLE_API_PRIVATE_KEY`
+* `LIBERATION_PLEDGE_SHEET_ID`
 
 Setting Up The Google Spreadsheets API
 --------------------------------------
