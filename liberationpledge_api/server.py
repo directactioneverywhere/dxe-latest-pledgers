@@ -53,7 +53,7 @@ def get_gspread_client():
     scope = ['https://spreadsheets.google.com/feeds']
     credentials = SignedJwtAssertionCredentials(
         os.environ["GOOGLE_API_CLIENT_EMAIL"],
-        os.environ["GOOGLE_API_PRIVATE_KEY"],
+        os.environ['GOOGLE_API_PRIVATE_KEY'].replace('\\n', '\n'),
         scope
     )
     return gspread.authorize(credentials)
