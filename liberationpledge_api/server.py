@@ -10,7 +10,6 @@ from werkzeug.contrib.cache import SimpleCache
 SHEET_ID = os.environ["LIBERATION_PLEDGE_SHEET_ID"]
 NUM_PLEDGERS_LIMIT = 11
 ENTRY_LENGTH_LIMIT = 20
-LOG_LOCATION = "/opt/dxe/logs/latest_pledgers"
 CACHE_TIMEOUT = 10800  # 3 hours
 
 HEADERS = [
@@ -70,7 +69,7 @@ def shorten_field(field):
 @cached()
 def latest_pledgers():
     """Returns the last `num` pledgers."""
-    num = request.args.get('limit')
+    num = int(request.args.get('limit'))
     if num < 1:
         return jsonify({"error": "number of entries requested must be a positive integer"})
     elif num > NUM_PLEDGERS_LIMIT:
@@ -89,8 +88,8 @@ def latest_pledgers():
         latest_values = sheet.get_all_values()[-num:]
 
     row_dicts = [dict(zip(HEADERS, row)) for row in latest_values]
-    cleaned_row_dicts = [{k: v for k, v in row.iteritems() if k in RETURN_HEADERS} for row in row_dicts]
-    shortened_row_dicts = [{k: shorten_field(v) for k, v in row.iteritems()} for row in cleaned_row_dicts]
+    cleaned_row_dicts = [{k: v for k, v in row.items() if k in RETURN_HEADERS} for row in row_dicts]
+    shortened_row_dicts = [{k: shorten_field(v) for k, v in row.items()} for row in cleaned_row_dicts]
     for row_dict in shortened_row_dicts:
         days_ago = (datetime.datetime.now() - datetime.datetime.strptime(row_dict["Submitted On"], "%m/%d/%Y %H:%M:%S")).days
         if days_ago <= 0:
@@ -104,10 +103,5 @@ def latest_pledgers():
     return jsonify({"pledgers": list(reversed(shortened_row_dicts))})  # ordered newest to oldest
 
 if __name__ == "__main__":
-    if not app.debug:
-        import logging
-        from logging.handlers import RotatingFileHandler
-        file_handler = RotatingFileHandler(LOG_LOCATION, maxBytes=100000, backupCount=100)
-        file_handler.setLevel(logging.WARNING)
-        app.logger.addHandler(file_handler)
+    app.debug = True
     app.run()
